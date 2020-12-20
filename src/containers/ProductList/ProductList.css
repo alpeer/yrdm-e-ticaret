@@ -1,0 +1,6 @@
+
+.body-bg{
+    bg:#000; 
+}
+
+@import '~bootstrap/scss/bootstrap.scss';

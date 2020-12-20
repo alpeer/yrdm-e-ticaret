@@ -1,0 +1,1 @@
+export const brands = ["gömlek","tişört","pantolon","gözlük","ayakkabı","çanta","takı"];

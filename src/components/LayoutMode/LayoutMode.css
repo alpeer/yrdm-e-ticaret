@@ -1,0 +1,27 @@
+.layout-mode {
+    display: flex;
+    flex-direction: row;
+    padding: 0.3rem;
+    border: 2px solid gray;
+    cursor: pointer;
+}
+.layout-mode__item {
+    width: 0.7rem;
+    height: 0.7rem;
+    background-color: gray;
+}
+.layout-mode__item--active {
+    background-color: dodgerblue;
+}
+.layout-mode__item:not(:last-child) {
+    margin-right: 0.3rem;
+}
+.layout-mode:not(:last-child) {
+    margin-right: 0.8rem;
+}
+.layout-mode:hover {
+    border: 2px solid #646464;
+}
+.layout-mode--active {
+    border: 2px solid dodgerblue;
+}
