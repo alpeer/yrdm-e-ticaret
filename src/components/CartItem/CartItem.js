@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 import {shortenTitle} from "../../pipes/shortenTitle";
 import {formatMoney} from "../../pipes/priceFormatter";
 import './CartItem.css';
-import {addProductToCart, decrementCartQuantity, incrementCartQuantity, removeProductToCart} from "../../actions";
+import {addProductToCart, decrementCartQuantity, incrementCartQuantity, removeProductFromCart} from "../../actions";
 
 import {Delete} from '../Button/Button';
 
 const CartItem = (
     {
-        title,
+        name:title,
         price,
         description,
         quantity,
@@ -22,7 +22,7 @@ const CartItem = (
     console.log(id);
     const [itemQuantity, setItemQuantity] = useState(quantity);
     const removeItem = () => {
-        dispatch(removeProductToCart(id));
+        dispatch(removeProductFromCart(id));
     };
 
     const handleQuantityChange = (e) => {
@@ -52,7 +52,7 @@ const CartItem = (
 
     };
 
-
+    price=Number(price)
     return (
         <div className="row align-items-center mb-3">
             <div className="col-12 col-sm-12 col-md-2 text-center">
