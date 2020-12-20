@@ -1,7 +1,8 @@
 
 import React from 'react'
+import { connect, useSelector } from 'react-redux';
+import classNames from 'classnames'
 import { AddToCart } from '../Button/Button'
-import { connect,ReactReduxContext, useSelector } from 'react-redux';
 import { addProductToCart, removeProductFromCart } from '../../actions';
 
 export default connect()(({ product , dispatch}, e) => {
@@ -12,9 +13,9 @@ export default connect()(({ product , dispatch}, e) => {
     e.preventDefault();
     dispatch(productInCart ? removeProductFromCart(product) : addProductToCart(product))
   }
-  return <AddToCart onClick={operation} className="btn btn-info product__add-to-cart">
+  return <AddToCart onClick={operation} className={classNames({ productInCart },"btn btn-info product__cart_button")}>
     {
-      productInCart ? 'Remove from Cart' : 'Add to Cart'
+      productInCart ? 'Sepetten Çıkar' : 'Sepete Ekle'
     }
 	</AddToCart>
 })

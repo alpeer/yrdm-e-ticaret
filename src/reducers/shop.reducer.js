@@ -4,11 +4,14 @@ import {
     INCREMENT_CART_ITEM_QUANTITY,
     REMOVE_PRODUCT_FROM_CART
 } from '../actions';
+import { Disk as createDisk } from '@otag/disk'
 import {phones} from "../data/phones";
+
+const Disk = createDisk({ namespace: 'eticaret', storage: 'SESSION' })
 
 const initialState = {
     products: phones,
-    cart: []
+    cart: Disk.cart || []
 };
 
 
@@ -31,7 +34,7 @@ const shopReducer = (state = initialState, action ) => {
 
             updatedCart[updatedItemIndex] = incrementedItem;
 
-
+            Disk.cart = updatedCart
             return {...state, cart: updatedCart};
 
         case DECREMENT_CART_ITEM_QUANTITY:
@@ -47,7 +50,7 @@ const shopReducer = (state = initialState, action ) => {
             decrementedItem.quantity--;
 
             updatedCart[updatedItemIndex] = decrementedItem;
-
+            Disk.cart = updatedCart
             return {...state, cart: updatedCart};
 
         case ADD_PRODUCT_TO_CART:
@@ -64,17 +67,18 @@ const shopReducer = (state = initialState, action ) => {
                 updatedItem.quantity++;
                 updatedCart[updatedItemIndex] = updatedItem;
             }
-
-            return {...state, cart: updatedCart};
+            Disk.cart = updatedCart
+            return { ...state, cart: updatedCart };
+        
         case REMOVE_PRODUCT_FROM_CART:
             updatedCart = [...state.cart];
             updatedItemIndex = updatedCart.findIndex(
                 item => item.id === action.payload
             );
-
             updatedCart.splice(updatedItemIndex, 1);
-
-            return {...state, cart: updatedCart};
+            Disk.cart = updatedCart
+            return { ...state, cart: updatedCart };
+        
         default:
             return state;
 

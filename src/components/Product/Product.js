@@ -1,16 +1,14 @@
-import React, { Component, useState } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import './Product.css';
-import ProductCartButton  from './ProductCartButton';
-import { ProductDetailButton } from '../Button/Button';
+import React, { Component, useState } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import ProductCartButton  from './ProductCartButton'
+import { ProductDetailButton } from '../Button/Button'
+import './Product.scss'
 
-class Product extends React.Component {
-
-	render() {
+const Product = (product)=> {
 		//console.log('dress: ', this.state.dress);
-		const { id, img, name, description, price } = this.props.product
+		const { id, img, name, description, price } = product
 
 		return <div className="card h-100 product">
 			<Link to={`/dress/${id}`} className="product__link">
@@ -23,16 +21,16 @@ class Product extends React.Component {
 				<h5 className="product__price">${price}</h5>
 				<p className="card-text product__description">{description}</p>
 				<div className="product-bottom">
-					<ProductCartButton product={ this.props.product }/>
+					<ProductCartButton product={product}/>
 
 					<Link to={`/dress/${id}`} className="product__link">
-						<ProductDetailButton className="btn btn-info product__add-to-cart">Detay</ProductDetailButton>
+						<ProductDetailButton className="btn btn-info product__add-to-cart"> Ayrıntılar </ProductDetailButton>
 					</Link>
 				</div>
 				
 			</div>
 		</div>
-	}
+
 }
 
 export default connect()(Product);

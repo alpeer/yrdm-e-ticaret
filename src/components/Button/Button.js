@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const AddToCart = styled.button`
-  background: palevioletred;
+  background: #2a5;
   border: none;
 `;
 
